@@ -1,0 +1,9 @@
+
+            <div id="poolName"><b><!-- tmpl_var name="pool" --></b></div>
+            <!-- tmpl_var name="connectionsActive" --> active connections, <!-- tmpl_var name="connectionsTotal" --> total
+            <div id="statLink">[ <a href="?pool=<!-- tmpl_var name="pool" -->"><img src="/img/refresh.png" alt="X" /></a> ] refresh &nbsp;&nbsp; [ <a href="?rm=actionClearStats&pool=<!-- tmpl_var name="pool" -->"><img src="/img/clear.png" alt="X" /></a> ] clear statistics</div>
+
+            <div id="memberList">
+                <!-- tmpl_var name="memberList" -->
+            </div>
+

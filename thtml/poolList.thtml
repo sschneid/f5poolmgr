@@ -1,0 +1,13 @@
+
+            <form method="post" action="" name="">
+                <input type="hidden" name="rm" value="displayPool">
+
+<!-- tmpl_var name="poolList" -->
+
+                <input type="submit" class="button" name="" value=" Submit " />
+            </form>
+
+            <br />
+
+            &nbsp;Please select a pool from the list above.
+

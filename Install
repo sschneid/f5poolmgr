@@ -1,0 +1,74 @@
+f5poolmgr installation
+
+
+1. View and edit f5poolmgr.cfg
+------------------------------
+
+f5poolmgr reads in most of it's configuration directives through a flat text configruation file (f5poolmgr.cfg).  This file must be in the located in the base of f5poolmgr's application directory.
+
+* Format is:
+
+    $variable: "value"
+
+* F5 use account:
+
+    - $username and $password must correspond with a account on the F5 LTM.  This account should be set to the role of 'Application Editor' within the F5.
+    - $server is the F5 device itself.
+
+    - Example:
+
+        $username: "f5poolmgr"
+        $password: "1l0v3myltm!"
+        $server: "bigip.company.com"
+    
+* LDAP authentication
+
+    - $ldap.server, $ldap.base.people, and $ldap.base.group are all necessary for authentication.  $ldap.server your LDAP server, $ldap.base.people refers to the user base DN, $ldap.base.group refers to the group base DN.
+
+    - Example:
+
+        $ldap.server: "ldaps://ldap.company.com:636"
+        $ldap.base.people: "ou=People,dc=company,dc=com"
+        $ldap.base.group:"ou=Groups,dc=company,dc=com"
+
+* Pool set-up
+
+    - Pools access is defined by LDAP group membership.
+    - A wildcard (*) grants access to ALL found pools.
+
+    - Example:
+
+        @pools.sysadm: "*"
+        @pools.f5webcluster: "Server_cluster_pool_A Server_cluster_pool_B"
+
+
+2. Apache set-up
+----------------
+
+Web set-up should be relatively simple.  Full Apache set-up is outside of the scope of this installation document.
+
+* AuthLDAP is required for Apache set-up.
+
+    - Example:
+
+        <Directory /var/www/f5poolmgr>
+            Options ExecCGI FollowSymLinks
+
+            AllowOverride None
+
+            AddHandler cgi-script .cgi
+            DirectoryIndex index.cgi
+
+            AuthType Basic
+            AuthName "f5poolmgr"
+
+            AuthLDAPEnabled on
+            AuthLDAPAuthoritative on
+            AuthLDAPURL ldaps://ldap.company.com/dc=company,dc=com?uid
+
+            Require valid-user
+
+            Order allow,deny
+            Allow from all
+        </Directory>
+
