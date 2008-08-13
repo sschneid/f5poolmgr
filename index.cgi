@@ -28,5 +28,5 @@ eval {
     $f5poolmgr->run();
 };
 
-if ( $@ ) { print "f5poolmgr error: $@"; }
+if ( $@ ) { print "Content-type: text/plain\n\n$@"; }
 
