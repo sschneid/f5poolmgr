@@ -37,10 +37,7 @@ sub setup {
     $self->{'config'} = $self->{'util'}->readConfig(
         configFile => 'f5poolmgr.cfg'
     )
-    || do {
-        print qq(Error reading configuration file f5poolmgr.cfg\n);
-        exit( 1 );
-    };
+    || die qq(Error reading configuration file f5poolmgr.cfg\n);
 
     # Read and untaint CGI parameters
     $self->{'cgi'} = $self->query();
