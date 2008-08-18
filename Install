@@ -12,7 +12,7 @@ f5poolmgr reads in most of it's configuration directives through a flat text con
 
 * F5 use account:
 
-    - $username and $password must correspond with a account on the F5 LTM.  This account should be set to the role of 'Application Editor' within the F5.
+    - $username and $password must correspond with a account on the F5 LTM.  This account should be set to the role of 'Manager' within the F5.
     - $server is the F5 device itself.
 
     - Example:
