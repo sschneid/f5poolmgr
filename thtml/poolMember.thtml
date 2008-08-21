@@ -5,10 +5,10 @@
                     <!-- tmpl_var name="connectionActive" --> active connections, <!-- tmpl_var name="connectionTotal" --> total<br />
                     <!-- tmpl_var name="desc" -->
                     <div class="state">
-                        [ <a href="?rm=actionSetSession&pool=<!-- tmpl_var name="pool" -->&member=<!-- tmpl_var name="memberIP" -->&state=<!-- tmpl_var name="session" -->"><img src="/img/session/<!-- tmpl_var name="session" -->.png" alt="<!-- tmpl_var name="session" -->" /></a> ] sessions enabled
+                        [ <a href="?rm=actionSetSession&amp;pool=<!-- tmpl_var name="pool" -->&amp;member=<!-- tmpl_var name="memberIP" -->&amp;state=<!-- tmpl_var name="session" -->"><img src="/img/session/<!-- tmpl_var name="session" -->.png" alt="<!-- tmpl_var name="session" -->" /></a> ] sessions enabled
                     </div>
                     <div class="state">
-                        [ <a href="?rm=actionSetState&pool=<!-- tmpl_var name="pool" -->&member=<!-- tmpl_var name="memberIP" -->&state=<!-- tmpl_var name="state" -->"><img src="/img/state/<!-- tmpl_var name="state" -->.png" alt="<!-- tmpl_var name="state" -->" /></a> ] member state
+                        [ <a href="?rm=actionSetState&amp;pool=<!-- tmpl_var name="pool" -->&amp;member=<!-- tmpl_var name="memberIP" -->&amp;state=<!-- tmpl_var name="state" -->"><img src="/img/state/<!-- tmpl_var name="state" -->.png" alt="<!-- tmpl_var name="state" -->" /></a> ] member state
                     </div>
                 </div>
 

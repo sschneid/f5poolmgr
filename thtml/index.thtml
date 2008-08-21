@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
@@ -13,10 +13,6 @@
 
         <h1><a href="?"><img src="/img/logoF5.png" alt="F5" style="width: 51px; height: 53px;" /></a></h1>
         <h2>[<b>f5poolmgr</b>] &nbsp;&nbsp; F5/BigIP Pool Management</h2>
-
-        <div id="nav">
-        <!-- tmpl_var name="menu" -->
-        </div>
 
         <div id="container">
             <!-- tmpl_var name="container" -->

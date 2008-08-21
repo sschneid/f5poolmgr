@@ -1,6 +1,6 @@
 
-            <form method="post" action="" name="">
-                <input type="hidden" name="rm" value="displayPool">
+            <form method="post" action="">
+                <input type="hidden" name="rm" value="displayPool" />
 
 <!-- tmpl_var name="poolList" -->
 
