@@ -50,8 +50,12 @@ sub setup {
 
     $self->{'arg'} = $self->{'util'}->untaintCGI( cgi => $self->{'cgi'} );
 
+    # Does Apache see a valid user?
+    $ENV{'REMOTE_USER'} || die qq(You must be logged in to use this application\n);
+
     # Get (LDAP) pool access list
-    my $ldap = Net::LDAP->new( $self->{'config'}->{'ldap.server'} );
+    my $ldap = Net::LDAP->new( $self->{'config'}->{'ldap.server'} )
+    || die qq(Error connecting to $self->{'config'}->{'ldap.server'}\n);
 
     my $mesg = $ldap->search(
         base => $self->{'config'}->{'ldap.base.group'},
