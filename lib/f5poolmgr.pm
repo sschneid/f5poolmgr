@@ -20,6 +20,7 @@ use f5poolmgr::Util;
 
 use MIME::Base64;
 use Net::LDAP;
+use POSIX qw( strftime );
 use SOAP::Lite;
 
 use Socket;
@@ -67,6 +68,13 @@ sub setup {
 
     $ldap->disconnect();
 
+    # Logging
+    if ( $self->{'config'}->{'audit.log'} ) {
+        if ( open( LOG, ">>$self->{'config'}->{'audit.log'}" ) ) {
+            $self->{'audit'} = 1;
+        }
+    }
+
     # Initialize and authenticate SOAP::Lite connections
     $self->{'soap'}->{'pool'} = SOAP::Lite
         ->uri  ( 'urn:iControl:LocalLB/Pool' )
@@ -108,6 +116,12 @@ sub setup {
     $self->start_mode( 'displayPool' );
 
     return( $self );
+}
+
+sub teardown {
+    my $self = shift;
+
+    close( LOG ) if $self->{'audit'};
 }
 
 sub actionClearStats {
@@ -156,6 +170,13 @@ sub actionSetSession {
         SOAP::Data->name( session_states => [ [ $set ] ] )
     );
 
+    $self->_log(
+        pool => $self->{'arg'}->{'pool'},
+        member => "$addr:$port",
+        type => 'session',
+        state => $state
+    ) if $self->{'audit'};
+
     return $self->displayPool();
 }
 
@@ -187,6 +208,13 @@ sub actionSetState {
         SOAP::Data->name( pool_names => [ $self->{'arg'}->{'pool'} ] ),
         SOAP::Data->name( monitor_states => [ [ $set ] ] )
     );
+
+    $self->_log(
+        pool => $self->{'arg'}->{'pool'},
+        member => "$addr:$port",
+        type => 'state',
+        state => $state
+    ) if $self->{'audit'};
 
     return $self->displayPool();
 }
@@ -290,6 +318,22 @@ sub displayPoolList {
             -values => [ sort { lc( $a ) cmp lc( $b ) } @poolList ]
         )
     );
+}
+
+sub _log {
+    my $self = shift;
+
+    my ( $arg );
+    %{$arg} = @_;
+    
+    my $stamp = '[' . strftime( "%e/%b/%Y:%H:%M:%S", localtime() ) . ']';
+
+    print LOG join( ' ', 
+        $ENV{'REMOTE_USER'}, $stamp,
+        $arg->{'pool'}, $arg->{'member'}, $arg->{'type'}, $arg->{'state'}
+    ) . "\n";
+
+    return 1;
 }
 
 sub _wrap {
