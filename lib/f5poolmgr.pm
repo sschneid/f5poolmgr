@@ -10,7 +10,7 @@
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
 #
-# $Id: f5poolmgr.pm,v 1.1.1.1 2008/07/03 16:00:57 sschneid Exp $
+# $Id: f5poolmgr.pm,v 1.2 2008/08/21 18:55:09 sschneid Exp $
 
 package f5poolmgr;
 

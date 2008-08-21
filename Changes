@@ -1,5 +1,13 @@
 Revision history of f5poolmgr
 
+1.2
+* Thu Aug 21 2008 Scott Schneider <sschneid@gmail.com>
+- Added audit log support
+- Switched to sending errors to the browser instead of the console
+- All generated output is now valid XHTML 1.0 transitional
+- Bug fixes:
+    - Errors thrown for invalid LDAP connections and no Apache valid-user
+
 1.1
 * Mon July 07 2008 Scott Schneider <sschneid@gmail.com>
 - initial changelog created
