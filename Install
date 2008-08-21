@@ -31,6 +31,14 @@ f5poolmgr reads in most of it's configuration directives through a flat text con
         $ldap.base.people: "ou=People,dc=company,dc=com"
         $ldap.base.group:"ou=Groups,dc=company,dc=com"
 
+* Audit logging
+
+    - $audit.log defined a file to log state changes to.  It must be writable by the user or group the Apache process is running as.
+
+    - Example:
+
+        $audit.log: "/var/log/f5poolmgr.log"
+
 * Pool set-up
 
     - Pools access is defined by LDAP group membership.
