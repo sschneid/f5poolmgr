@@ -13,7 +13,7 @@ f5poolmgr reads in most of it's configuration directives through a flat text con
 * F5 use account:
 
     - $username and $password must correspond with a account on the F5 LTM.  This account should be set to the role of 'Manager' within the F5.
-    - $server is the F5 device itself.
+    - $server is the F5 device itself.  Note that if you have more than one LTM in a fail-over cluster that you can specify the floating IP to ensure f5poolmgr always connects to the active device.
 
     - Example:
 
